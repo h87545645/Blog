@@ -22,8 +22,8 @@ and the repository exists.
 
 git 在pull或者合并分支的时候有时会遇到下图这个界面
 
-![git]([https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/
-u=702257389,1274025419&fm=27&gp=0.jpg](https://img-blog.csdn.net/20180814133558388?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQwMjc4NzY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70) "git")
+
+![blockchain](https://img-blog.csdn.net/20180814133558388?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQwMjc4NzY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70 "区块链")
 
 如果本地和远程需要合并时就会出现
 

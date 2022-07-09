@@ -1,36 +1,148 @@
-# git 常用命令/错误
+# 工作线程 JobSystem & JobHandle
+
+Unity2018起开放了工作线程，我们可以用Job System做一些耗时的事情。
 
 
-
-`错误`
-
-### 执行 ```git clone```操作命令时报错
+### 如何创建一个job
+首先创建一个结构体 实现IJob接口，在接口内部实现Excute()方法，作业的任务处理就放在这个函数之中
+NativeArray result 是一个返回结果的数组，这是一种共享的数组
 
 ```
-Warning: Permanently added the RSA host key for IP address 'ipxxx' to the list of known hosts.
-git@github.com: Permission denied (publickey).
-fatal: Could not read from remote repository.
+[BurstCompile]
+public struct MyJob : IJob
+{
+    public float a;
+    public float b;
+    public NativeArray<float> result;
 
-Please make sure you have the correct access rights
-and the repository exists.
+    public void Execute()
+    {
+        result[0] = a + b;
+    }
+}
+
 ```
 
-原因：由于未配置公钥
-解决：cat ~/.ssh/id_rsa.pub 复制公钥到settting add key
+当调用Job的Schedule方法时，它将返回JobHandle。您可以在代码中使用JobHandle 作为其他Job的依赖。如果一个Job依赖于另一个Job的结果，则可以将第一个Job的JobHandle参数作为参数传递给第二个Job的Schedule方法，如下所示：
+```
 
-### git合并分支时出现“Please enter a commit message to explain why this merge is necessary”报错的解决方法
+JobHandle firstJobHandle = firstJob.Schedule();
+secondJob.Schedule(firstJobHandle);
+```
 
-git 在pull或者合并分支的时候有时会遇到下图这个界面
+如果Job具有许多依赖关系，则可以使用JobHandle.CombineDependencies方法合并它们。CombineDependencies允许您将它们（JobHandle）作为参数
+
+```
+NativeArray<JobHandle> handles = new NativeArray<JobHandle>(numJobs, Allocator.TempJob);
+ 
+// Populate `handles` with `JobHandles` from multiple scheduled jobs...
+ 
+JobHandle jh = JobHandle.CombineDependencies(handles);
+```
 
 
-![git](https://img-blog.csdn.net/20180814133558388?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQwMjc4NzY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70 "git")
+### IJobParallelFor
 
-如果本地和远程需要合并时就会出现
+在调度作业时，只能有一个作业正在执行一项任务。在游戏中，通常希望对大量对象执行相同的操作。这个接口可以实现一个作业执行多个任务
 
-按键盘上的“i”键可进入插入模式
+```
+// 将两个浮点值相加的作业
+public struct MyParallelJob : IJobParallelFor
+{
+    [ReadOnly]
+    public NativeArray<float> a;
+    [ReadOnly]
+    public NativeArray<float> b;
+    public NativeArray<float> result;
 
-这时可以修改最上方的黄色部分，改成你想写的合并原因
+    public void Execute(int i)
+    {
+        result[i] = a[i] + b[i];
+    }
+}
+```
 
-按键盘上的“Esc”键退出插入模式
+```
+NativeArray<float> a = new NativeArray<float>(2, Allocator.TempJob);
 
-最后在最下面输入“ :wq ”后按回车键即可
+NativeArray<float> b = new NativeArray<float>(2, Allocator.TempJob);
+
+NativeArray<float> result = new NativeArray<float>(2, Allocator.TempJob);
+
+a[0] = 1.1;
+b[0] = 2.2;
+a[1] = 3.3;
+b[1] = 4.4;
+
+MyParallelJob jobData = new MyParallelJob();
+jobData.a = a;  
+jobData.b = b;
+jobData.result = result;
+
+// 调度作业，为结果数组中的每个索引执行一个 Execute 方法，且每个处理批次只处理一项
+JobHandle handle = jobData.Schedule(result.Length, 1);
+
+// 等待作业完成
+handle.Complete();
+
+// 释放数组分配的内存
+a.Dispose();
+b.Dispose();
+result.Dispose();
+```
+
+###  ParallelForTransform
+ParallelForTransform类型的Job
+一个ParallelForTransform类型的Job是另一种类型的ParallelFor类型的Job ，专为在Transforms上运行而设计。
+
+注意：ParallelForTransform类型的Job是Unity中所有实现IJobParallelForTransform接口的Job的统称。
+
+`例`
+
+```
+using System.Collections;
+using System.Collections.Generic;
+using Unity.Collections;
+using Unity.Jobs;
+using UnityEngine;
+using UnityEngine.Jobs;
+
+public class TimelineTest : MonoBehaviour
+{
+    public Transform[] cubes;
+
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            NativeArray<Vector3> position = new NativeArray<Vector3>(cubes.Length, Allocator.Persistent);
+            for(int i = 0; i < position.Length; i++)
+            {
+                position[i] = Vector3.one * i;
+            }
+            //设置transform
+            TransformAccessArray transfromArray = new TransformAccessArray(cubes);
+            MyJob job = new MyJob() { position = position };
+            JobHandle jobHandle = job.Schedule(transfromArray);
+            //等待工作线程结束
+            jobHandle.Complete();
+            transfromArray.Dispose();
+            position.Dispose();
+        }
+    }
+
+    struct MyJob : IJobParallelForTransform
+    {
+        [ReadOnly] public NativeArray<Vector3> position;
+        public void Execute(int index, TransformAccess transform)
+        {
+            //工作线程中设置坐标
+            transform.position = position[index];
+        }
+    }
+}
+```
+
+其中 [Unity基础—C#中 Dispose]()

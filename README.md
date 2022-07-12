@@ -34,3 +34,6 @@ stay foolish stay hungry
 
 ## C# 
 [c# 经验总结](https://github.com/h87545645/Blog/blob/main/c%23/c%23%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93.md)
+
+## leetcode
+[leetcode 笔记](https://github.com/h87545645/leetcode_note)

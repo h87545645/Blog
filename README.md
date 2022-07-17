@@ -27,6 +27,7 @@ stay foolish stay hungry
 
 [Gizmos 工具类](https://github.com/h87545645/Blog/blob/main/unity3d/Gizmos.md)
 
+[Shader UIGray](https://github.com/h87545645/Blog/blob/main/unity3d/Shader%20UIGray.md)
 
 ## git 技巧&&常见错误
 [git 常用技巧](https://github.com/h87545645/Blog/blob/main/git/git.md)

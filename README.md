@@ -8,6 +8,8 @@ stay foolish stay hungry
 
 [c# SortedDictionary](https://github.com/h87545645/Blog/blob/main/data-structure/SortedDictionary.md)
 
+[c# Tuple（元组）](https://github.com/h87545645/Blog/blob/main/data-structure/c%23%20%E5%85%83%E7%BB%84%20Tuple.md)
+
 ## 算法
 
 [贪心算法](https://github.com/h87545645/Blog/blob/main/data-structure/%E5%AD%97%E5%85%B8%E6%A0%91.md)

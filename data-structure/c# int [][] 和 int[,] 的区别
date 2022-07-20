@@ -1,0 +1,30 @@
+# c# int [][] 和 int[,] 的区别
+
+在leetcode 发现有道题使用的int [][]交错数组，记录一下其和二维数组int[,]的不同用法
+
+int[,] 是二维数组，它就是传统意义上 n x m 的表，和 C++ 里的 int[][] 是一个意思
+int[][] 是交错数组，与 C++ 里的 int[][] 不同。它其实是一个 int[] 里嵌套着 int[]，可以理解为 (int[])[]
+
+用法
+```
+int[,] arr1 = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+int[][] arr2 = { new int[] { 1, 2, 3 }, new int[] { 4, 5, 6 }, new int[] { 7, 8, 9 } };
+int[][] arr = new int[m][];
+
+
+
+int num1 = arr1[1, 2];
+int num2 = arr2[1][2];
+
+arr1[0, 1] = 10;
+arr2[0][1] = 10;
+
+int len1 = arr1.GetLength(0);     //len1 = 3
+int len11 = arr1.GetLength(1);    //len11 = 3 
+
+//第一层数组长度
+int len2 = arr2.Length;     //len2 = 3
+//因为第一层中对象也是数组，所以取第二层数字长度获取具体的Length
+int len22 = arr2[0].Length;    //len22 = 3
+```
+

@@ -35,7 +35,7 @@ stay foolish stay hungry
 
 [Shader UIGray](https://github.com/h87545645/Blog/blob/main/unity3d/Shader%20UIGray.md)
 
-##cocos creator组件
+## cocos creator组件
 
 [模拟纸飞机动画 PaperPlaneAnim](https://github.com/h87545645/PaperPlaneAnim)
 

@@ -35,6 +35,14 @@ stay foolish stay hungry
 
 [Shader UIGray](https://github.com/h87545645/Blog/blob/main/unity3d/Shader%20UIGray.md)
 
+##cocos creator组件
+
+[模拟纸飞机动画 PaperPlaneAnim](https://github.com/h87545645/PaperPlaneAnim)
+
+[UIScrollPullView 下拉加载更多](https://github.com/h87545645/UIScrollPullView)
+
+[tabButtonGroup 标签切换](https://github.com/h87545645/tabButtonGroup)
+
 ## git 技巧&&常见错误
 [git 常用技巧](https://github.com/h87545645/Blog/blob/main/git/git.md)
 

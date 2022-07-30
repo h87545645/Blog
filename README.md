@@ -60,3 +60,9 @@ stay foolish stay hungry
 
 ## leetcode
 [leetcode 笔记](https://github.com/h87545645/leetcode_note)
+
+
+学习清单
+1.astar 寻路算法
+2.敌人索敌算法
+3.欧拉角死锁和四元数

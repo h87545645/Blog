@@ -15,7 +15,6 @@ stay foolish stay hungry
 [跳表 SkipList](https://github.com/h87545645/Blog/blob/main/data-structure/%E8%B7%B3%E8%A1%A8%20SkipList.md)
 
 
-
 ## 算法
 
 [贪心算法](https://github.com/h87545645/Blog/blob/main/algorithm/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95.md)
@@ -23,6 +22,12 @@ stay foolish stay hungry
 [选择排序](https://github.com/h87545645/Blog/blob/main/data-structure/%E5%AD%97%E5%85%B8%E6%A0%91.md)
 
 [DFS & BFS](https://github.com/h87545645/Blog/blob/main/algorithm/DFS%26BFS.md)
+
+
+
+## 设计模式
+
+[State Pattern 状态模式](https://github.com/h87545645/Blog/blob/main/algorithm/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95.md)
 
 
 ## unity 学习笔记

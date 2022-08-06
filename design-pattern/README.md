@@ -8,7 +8,7 @@
 
 将角色的各种状态抽象成了状态类，各个状态类中实现各自的功能与状态切换，对庞大的判断逻辑解耦并且新加状态也更加轻松
 
-[BaseState.cs]()
+[BaseState.cs](https://github.com/h87545645/Blog/blob/main/design-pattern/example-code/BaseState.cs)
 定义状态接口
 ```
 using UnityEngine;
@@ -22,7 +22,7 @@ public interface BaseState
 }
 ```
 
-[StandingState.cs]()
+[StandingState.cs](https://github.com/h87545645/Blog/blob/main/design-pattern/example-code/StandingState.cs)
 frag待机状态
 ```
 using UnityEngine;
@@ -56,7 +56,7 @@ public class StandingState : BaseState
 }
 
 ```
-[ChargeState.cs]()
+[ChargeState.cs](https://github.com/h87545645/Blog/blob/main/design-pattern/example-code/ChargeState.cs)
 frag 蓄力状态
 ```
 using UnityEngine;
@@ -95,7 +95,7 @@ public class ChargeState : BaseState
 ```
 
 
-[JumpingState.cs]()
+[JumpingState.cs](https://github.com/h87545645/Blog/blob/main/design-pattern/example-code/JumpingState.cs)
 frag 跳跃
 ```
 using UnityEngine;

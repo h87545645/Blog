@@ -27,7 +27,7 @@ stay foolish stay hungry
 
 ## 设计模式
 
-[State Pattern 状态模式](https://github.com/h87545645/Blog/blob/main/algorithm/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95.md)
+[State Pattern 状态模式](https://github.com/h87545645/Blog/tree/main/design-pattern)
 
 
 ## unity 学习笔记

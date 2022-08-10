@@ -2,6 +2,9 @@
 
 对于GPU渲染管线的原理更多还是在理论层面，这篇文章主要实践在unity引擎里从头开始实现一个简单的shader效果，从而更好的理解GPU渲染的过程中的各个步骤。
 
+在project视图下右键，create/shader/unlit shader
+创建好后删除所有代码，从头开始写
+
 首先需要`Shader{}`代码块 
 ```
 Shader "MyFirstShader"

@@ -29,6 +29,10 @@ stay foolish stay hungry
 
 [State Pattern 状态模式](https://github.com/h87545645/Blog/tree/main/design-pattern)
 
+## shader
+
+[在unity中使用shader](https://github.com/h87545645/Blog/blob/main/shader/shader%E5%85%A5%E9%97%A8.md)
+
 
 ## unity 学习笔记
 

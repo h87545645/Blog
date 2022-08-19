@@ -148,6 +148,43 @@ half4 Pixel(Varyings IN) :SV_TARGET
 }
 ```
 
+目前shader已经可以简单的显示贴图和高光效果了
+接下来我们来实现法线贴图 
+法线贴图的出现,是为了低面数的模型模拟出高面数的模型的"光照信息".光照信息最重要的当然是光入射方向与入射点的法线夹角.法线贴图本质上就是记录了这个夹角的相关信息.光照的计算与某个面上的法线方向息息相关.
+实际上就是用一张图上每个像素的rgb来储存高精度模型上每个点的法线向量，拿到法线贴图后，经过一些列转换，将高精度模型的法线应用到低精度模型上，使低模模拟出高模的光照效果。
+首先我们需要编辑器里挂上法线贴图
+```
+//定义属性
+	Properties
+	{
+		_Color("Color",color) = (1,1,0,1)
+		_BaseMap("Base Map",2D) = "white" {}
+		_NormalMap("Normal Map",2D) = "bump" {} //法线贴图
+		_Shininess("Shininess",float) = 32 //光照强度
+	}
+```
+
+有了贴图，现在该如何将贴图上的法线替换到我们的模型对应的法线上呢
+正常的法线贴图记录的是高模在物体坐标系下的对应低模的法线向量信息，但是如果物体发生顶点形变等操作，对应关系就不对了
+
+> 　我们上边计算法线贴图所用到的法线,又是从哪里来的.如果这个法线方向,是处于世界坐标中的(world space),那称为world space normal.如果是处于物体本身局部坐标中的,那称为object space normal.很容易想象,world space normal一旦从贴图里解压出来后,就可以直接用了,效率很高.但是有个缺点,这个world space normal 是固定了,如果物体没有保持原来的方向和位置,那原来生成的normal map就作废了.因此又有人保存了object space normal.它从贴图里解压,还需要乘以model-view矩阵转换到世界坐标,或者转换到其他坐标取决于计算过程及需求.object space normal生成的贴图,物体可以被旋转和位移.基本让人满意.但仍有一个缺点.就是一张贴图只能对应特定的一个模型,模型不能有变形(deform).
+
+
+这时需要TBN矩阵,变换到tangent space，当低模变形时,即三角面变化时,它的tangent space也会跟着变化,保存在贴图里的法线乘以低模这个面的tangent space到外部坐标系的转换矩阵即可得到外部坐标
+[关于TBN的原理可以参考这篇文章](https://blog.csdn.net/damenhanter/article/details/22481563?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-3-22481563-blog-124983933.pc_relevant_multi_platform_whitelistv3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-3-22481563-blog-124983933.pc_relevant_multi_platform_whitelistv3&utm_relevant_index=6)
+
+我们需要在Pixel里构造出TBN矩阵，将法线向量转换到TBN矩阵中
+```
+// 负切线 bitangent IN.tangentWS.w相当于一个标志，如果模型有镜像使用 w是负数 正好取反
+float3 bitangent = cross(IN.normalWS,IN.tangentWS.xyz) * IN.tangentWS.w;
+// tbn矩阵 float3x3表示 3x3矩阵
+float3x3 TBN = float3x3(IN.tangentWS.xyz,bitangent,IN.normalWS);
+
+
+float3 normal = UnpackNormal(tex2D(_NormalMap,IN.uv));
+float3 worldSpaceNormal = TransformTangentToWorld(normal,TBN);
+```
+
 
 [完整shader文件](https://github.com/h87545645/u3d_proj/blob/main/Assets/GameAssets/Materials/MyFirstShader.shader)
 

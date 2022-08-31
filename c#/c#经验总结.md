@@ -57,3 +57,8 @@ into：提供一个临时的标识符，该标识符可以引用join、group和s
 int a = 3;
 int result = a&1;//3二进制是00…0011，1二进制是00…001，和3进行比较，&结果是二进制00…001。最终结果转为int就是1.
 ```
+***
+  
+  ## c# ?的特殊用法
+  可空类型修饰符（？），如：A ?? B表示如果A为null则返回B，否则返回A
+  fileInfo?.Close() 当fileInfo不为null是执行Close方法

@@ -14,6 +14,8 @@ stay foolish stay hungry
 
 [跳表 SkipList](https://github.com/h87545645/Blog/blob/main/data-structure/%E8%B7%B3%E8%A1%A8%20SkipList.md)
 
+[优先级队列 PriorityQueue](https://github.com/h87545645/Blog/blob/main/data-structure/%E4%BC%98%E5%85%88%E7%BA%A7%E9%98%9F%E5%88%97PriorityQueue.md)
+
 
 ## 算法
 

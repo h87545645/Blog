@@ -5,4 +5,4 @@
 c#中可以使用堆结构来实现。同时也可以把PriorityQueue当作堆结构来使用。
 
 比如leetcode题目
-
+[17.09. 第 k 个数](https://leetcode.cn/problems/get-kth-magic-number-lcci/)

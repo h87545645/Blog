@@ -52,6 +52,10 @@ stay foolish stay hungry
 
 [UIOrder](https://github.com/h87545645/Blog/blob/main/unity3d/UIOrder.md)
 
+[TextMeshPro的坑](https://github.com/h87545645/Blog/blob/main/unity3d/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%AA%E4%BD%BF%E7%94%A8TextMeshPro%E7%9A%84%E5%9D%91.md)
+
+
+
 
 
 ## cocos creator组件

@@ -38,6 +38,8 @@ stay foolish stay hungry
 
 ## unity 学习笔记
 
+[ET7.0框架使用记录](https://github.com/h87545645/Blog/blob/main/unity3d/Unity_ET%E6%A1%86%E6%9E%B67.0_Learn.md)
+
 [Unity发布微信小游戏踩坑](https://github.com/h87545645/Blog/blob/main/unity3d/Unity%E5%8F%91%E5%B8%83%E5%BE%AE%E4%BF%A1%E5%B0%8F%E6%B8%B8%E6%88%8F.md)
 
 [工作线程 JobSystem](https://github.com/h87545645/Blog/blob/main/unity3d/unity3d-JobSystem.md)

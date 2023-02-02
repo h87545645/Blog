@@ -31,6 +31,8 @@ ET框架能方便的进行双端开发，并且自带ILRuntime热更新，一开
 
 * 3.导出excel表 执行win_startExcelExport时报错没有 tool.dll 
 
+https://github.com/h87545645/Blog/blob/main/unity3d/img/ET_excel_err.png
+
 一开始去下载tool.dll，然后又出现其他dll没有，也没有找到其他人用ET出现此问题，所以怀疑是工程哪里没设置对。
 
 用visual studio 打开Client-Server.sln后 选择整个解决方案，重新build工程后解决。

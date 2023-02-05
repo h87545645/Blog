@@ -43,7 +43,7 @@ ET框架能方便的进行双端开发，并且自带ILRuntime热更新，一开
 ET6.0后使用程序集来编写代码，code没有放在工程里，所有新的插件无法引用。
 
 需要找到对应程序集文件设置 .asmdef文件
-![win_startExcelExport](https://github.com/h87545645/Blog/blob/main/unity3d/img/ET_excel_err.png "win_startExcelExport")
+![asmdef文件](https://github.com/h87545645/Blog/blob/main/unity3d/img/asmdef文件.png "asmdef文件")
 
 将对应assembly definition references 加入
 

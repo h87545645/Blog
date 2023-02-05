@@ -37,3 +37,13 @@ ET框架能方便的进行双端开发，并且自带ILRuntime热更新，一开
 一开始去下载tool.dll，然后又出现其他dll没有，也没有找到其他人用ET出现此问题，所以怀疑是工程哪里没设置对。
 
 用visual studio 打开Client-Server.sln后 选择整个解决方案，重新build工程后解决。
+
+* 4.使用textmeshpro 无法引用问题
+
+ET6.0后使用程序集来编写代码，code没有放在工程里，所有新的插件无法引用。
+
+需要找到对应程序集文件设置 .asmdef文件
+![win_startExcelExport](https://github.com/h87545645/Blog/blob/main/unity3d/img/ET_excel_err.png "win_startExcelExport")
+
+将对应assembly definition references 加入
+

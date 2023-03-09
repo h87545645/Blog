@@ -21,7 +21,7 @@ stay foolish stay hungry
 
 [贪心算法](https://github.com/h87545645/Blog/blob/main/algorithm/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95.md)
 
-[选择排序](https://github.com/h87545645/Blog/blob/main/data-structure/%E5%AD%97%E5%85%B8%E6%A0%91.md)
+[选择排序](https://github.com/h87545645/Blog/blob/main/algorithm/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F.md)
 
 [DFS & BFS](https://github.com/h87545645/Blog/blob/main/algorithm/DFS%26BFS.md)
 

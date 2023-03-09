@@ -25,6 +25,8 @@ stay foolish stay hungry
 
 [DFS & BFS](https://github.com/h87545645/Blog/blob/main/algorithm/DFS%26BFS.md)
 
+[Dynamic programming 动态规划](https://github.com/h87545645/Blog/blob/main/algorithm/Dynamic%20programming%20%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.md)
+
 
 
 ## 设计模式

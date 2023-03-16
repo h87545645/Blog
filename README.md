@@ -72,6 +72,11 @@ stay foolish stay hungry
 
 [tabButtonGroup 标签切换](https://github.com/h87545645/tabButtonGroup)
 
+
+## 部署云服务器
+
+[ET7 部署云服务器]()
+
 ## git 技巧&&常见错误
 [git 常用技巧](https://github.com/h87545645/Blog/blob/main/git/git.md)
 

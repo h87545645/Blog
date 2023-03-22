@@ -72,6 +72,8 @@ stay foolish stay hungry
 
 [tabButtonGroup 标签切换](https://github.com/h87545645/tabButtonGroup)
 
+[cocos creator 设置cullingMask技巧](https://github.com/h87545645/Blog/blob/main/cocos-creator/cocos%E8%AE%BE%E7%BD%AE%E7%9B%B8%E6%9C%BA%E6%B8%B2%E6%9F%93cullingMask%E6%8A%80%E5%B7%A7.md)
+
 
 ## 部署云服务器
 

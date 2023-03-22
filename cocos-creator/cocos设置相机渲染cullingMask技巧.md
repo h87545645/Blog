@@ -1,6 +1,9 @@
 # cocos设置相机渲染cullingMask技巧
 
-![https://github.com/h87545645/Blog/blob/main/image/cocos_camera.png]
+camera 的cullingMask决定了该相机会渲染哪些group的节点。
+![camera]( https://github.com/h87545645/Blog/blob/main/image/cocos_camera.png "camera")
+
+如果是在代码里设置cullingMask则需要用到位运算技巧
 
 ```js
 // 当相机everything 时，cullingMask 为 -1，即32个1，0xffffffff；

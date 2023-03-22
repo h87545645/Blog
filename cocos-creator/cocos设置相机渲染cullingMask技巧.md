@@ -1,5 +1,7 @@
 # cocos设置相机渲染cullingMask技巧
 
+![https://github.com/h87545645/Blog/blob/main/image/cocos_camera.png]
+
 ```js
 // 当相机everything 时，cullingMask 为 -1，即32个1，0xffffffff；
 // 当相机nothing 时，cullingMask 等于 0；
@@ -14,3 +16,4 @@ camera.cullingMask |= (1 << x);
 camera.cullingMask = (1 << x) + (1 << y)  + (1 << z); 
 
 ```
+

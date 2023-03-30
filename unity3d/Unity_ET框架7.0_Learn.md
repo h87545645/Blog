@@ -18,6 +18,14 @@ ET框架能方便的进行双端开发，并且自带ILRuntime热更新，一开
 
 关于[ET 和 GameFramework对比](https://blog.csdn.net/yupu56/article/details/106993157)
 
+ET目录结构
+
+[ET目录结构](https://blog.csdn.net/m0_48781656/article/details/123012935)
+
+客户端文件结构
+
+[客户端文件结构](https://blog.csdn.net/m0_48781656/article/details/123012935)
+
 下面将记录使用ET过程中遇到的问题经验总结
 
 

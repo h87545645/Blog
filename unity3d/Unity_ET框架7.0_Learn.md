@@ -58,7 +58,9 @@ ET6.0后使用程序集来编写代码，code没有放在工程里，所有新�
 * 5.使用HybridCLR打包时报错
 HybridCLR->generate=>all报错 GenerateStripedAOTDlls 失败
 
+![buildError](https://github.com/h87545645/Blog/blob/main/unity3d/img/buildError.png)
 
+需要清理build 
 
 ![cleanBuild](https://github.com/h87545645/Blog/blob/main/unity3d/img/cleanBuild.png)
 

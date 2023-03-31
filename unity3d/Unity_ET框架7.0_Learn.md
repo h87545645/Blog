@@ -56,6 +56,7 @@ ET6.0后使用程序集来编写代码，code没有放在工程里，所有新�
 将对应assembly definition references 加入
 
 * 5.使用HybridCLR打包时报错
+HybridCLR->generate=>all报错 GenerateStripedAOTDlls 失败
 
 
 

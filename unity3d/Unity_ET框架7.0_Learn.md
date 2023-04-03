@@ -29,15 +29,15 @@ ET目录结构
 下面将记录使用ET过程中遇到的问题经验总结
 
 
-* 1.部署
+# 1.部署
 
 参考荷兰猪小灰灰[ET框架-开发环境搭建](https://blog.csdn.net/m0_48781656/article/details/123012935)
 
-* 2.运行demo
+# 2.运行demo
 
 启动服务器后，打开init场景运行，可能会遇到空对象报错，需要在菜单栏Tool->build debug code 一次。图片以后补充。
 
-* 3.导出excel表 执行win_startExcelExport时报错没有 tool.dll 
+# 3.导出excel表 执行win_startExcelExport时报错没有 tool.dll 
 
 
 ![win_startExcelExport](https://github.com/h87545645/Blog/blob/main/unity3d/img/ET_excel_err.png "win_startExcelExport")
@@ -46,7 +46,7 @@ ET目录结构
 
 用visual studio 打开Client-Server.sln后 选择整个解决方案，重新build工程后解决。
 
-* 4.使用textmeshpro 无法引用问题
+# 4.使用textmeshpro 无法引用问题
 
 ET6.0后使用程序集来编写代码，code没有放在工程里，所有新的插件无法引用。
 
@@ -55,7 +55,7 @@ ET6.0后使用程序集来编写代码，code没有放在工程里，所有新�
 
 将对应assembly definition references 加入
 
-* 5.使用HybridCLR打包时报错
+# 5.使用HybridCLR打包时报错
 HybridCLR->generate=>all报错 GenerateStripedAOTDlls 失败
 
 ![buildError](https://github.com/h87545645/Blog/blob/main/unity3d/img/buildError.png)
@@ -63,4 +63,12 @@ HybridCLR->generate=>all报错 GenerateStripedAOTDlls 失败
 需要清理build 
 
 ![cleanBuild](https://github.com/h87545645/Blog/blob/main/unity3d/img/cleanBuild.png)
+
+
+# 6.将场景设置成AssetBundle后不能加载
+
+[将场景设置成AssetBundle后不能加载](https://et-framework.cn/d/1380-assetbundle)
+
+目的是将场景打成AssetBundle方便热更
+
 

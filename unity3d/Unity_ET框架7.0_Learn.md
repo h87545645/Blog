@@ -71,4 +71,7 @@ HybridCLR->generate=>all报错 GenerateStripedAOTDlls 失败
 
 目的是将场景打成AssetBundle方便热更
 
+在buildsetting 取消勾选后报错
+
+解决方法：在startScene里配置所有场景
 

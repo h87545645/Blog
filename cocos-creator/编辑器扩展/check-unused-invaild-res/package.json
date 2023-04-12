@@ -1,0 +1,12 @@
+{
+  "name": "check-invaild-res",
+  "version": "0.0.1",
+  "description": "检查bundle使用了非法资源",
+  "author": "Cocos Creator",
+  "main": "main.js",
+  "main-menu": {
+    "扩展/检查bundle使用了非法资源/check-bundles-invaild": {
+      "message": "check-invaild-res:check-bundles-invaild"
+    }
+  }
+}

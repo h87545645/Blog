@@ -1,0 +1,25 @@
+{
+    "name": "client-tools",
+    "version": "0.0.1",
+    "description": "工程插件工具合集",
+    "scene-script": "scene-walker.js",
+    "author": "Cocos Creator",
+    "main": "main.js",
+    "main-menu": {
+        "i18n:MAIN_MENU.package.title/导出TS脚本(预制或场景文件)": {
+            "message": "client-tools:export",
+            "accelerator": "alt+s"
+        },
+        "i18n:MAIN_MENU.package.title/检查资源引用(预制或场景文件)": {
+            "message": "client-tools:check",
+            "accelerator": "alt+1"
+        },
+        "i18n:MAIN_MENU.package.title/导出音频配置文件": {
+            "message": "client-tools:exportAudioCfg",
+            "accelerator": "alt+2"
+        }
+    },
+    "dependencies": {
+        "fs": "0.0.1-security"
+    }
+}

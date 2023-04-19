@@ -39,3 +39,18 @@ opencloud 其实是兼容的Centos
 ```
 yum -y install openssl-devel安装，openssl和openssl-devel的区别简单来说就是devel这个是开发需要的头文件等东西。
 ```
+
+```
+CMake Error at /opt/cmake-3.26.3/Modules/CMakeTestCCompiler.cmake:67 (message):
+  The C compiler
+
+    "/usr/bin/cc"
+
+  is not able to compile a simple test program.
+
+  It fails with the following output:
+
+    Change Dir: /root/ET/Public/Share/Libs/Kcp/build_linux32/CMakeFiles/CMakeScratch/TryCompile-VfgT65
+```
+
+cmake -DCMAKE_CXX_COMPILER=$(which g++)

@@ -86,7 +86,13 @@ TODO 以后来总结
 这是因为linxu上没有kcp的库
 然后我去安装了cmake，按教程在linux上编kcp库，又发现32位的死活编不成功
 遂换成64位，终于成功
-然后需要
+可以看到工程里存放库的文件夹
+![plugins](https://github.com/h87545645/Blog/blob/main/unity3d/img/ET_plugins.png)
+
+然后是解决方案DotNet.ThirdParty.csproj里可以看到对应引用
+![ThirdParty](https://github.com/h87545645/Blog/blob/main/unity3d/img/libkcp.so.png)
+
+而部署在云上的部分，只需要将编译好的libkcp.so直接放到Bin下面即可
 
 
 

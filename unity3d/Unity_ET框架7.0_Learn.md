@@ -75,3 +75,18 @@ HybridCLR->generate=>all报错 GenerateStripedAOTDlls 失败
 
 解决方法：在startScene里配置所有场景
 
+# 7.接入yooAssets资源管理
+TODO 以后来总结
+
+# 8.部署云服务器
+主要参考[ET7.0 腾讯云centos部署](https://blog.csdn.net/liyuping8888/article/details/126859161)
+对linux还不太熟悉 所以主要记录一下ET在linux上的问题
+
+1） Unable to load shared library ’kcp
+这是因为linxu上没有kcp的库
+然后我去安装了cmake，按教程在linux上编kcp库，又发现32位的死活编不成功
+遂换成64位，终于成功
+然后需要
+
+
+

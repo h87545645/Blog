@@ -98,5 +98,25 @@ HybridCLR->generate=>all报错 GenerateStripedAOTDlls 失败
 
 # 9.打包流程
 
+## ET->BuildTool->BuildHotFix&Model
+这一步会生成代码的dll文件并拷贝到Bundles/Codes下
 
+## Hybridclr->generate->all
+Hybridclr的傻瓜式一键生成所有
+
+## ET->BuildTool->buildpackage 
+打包
+
+## Hybridclr->copyAot
+这一步是将补充元数据拷贝到Bundles/Aot目录
+
+## ET->BuildTool->buildpackage 
+再次打包
+
+## YooAssets->build
+将生成的dll用YooAssets打包,将打包后的资源放到CDN上
+
+
+
+//TODO 补充截图
 

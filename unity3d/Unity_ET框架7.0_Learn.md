@@ -76,7 +76,9 @@ HybridCLR->generate=>all报错 GenerateStripedAOTDlls 失败
 解决方法：在startScene里配置所有场景
 
 # 7.接入yooAssets资源管理
-TODO 以后来总结
+参照yooAssets官方例子，将资源分为代码dll，预制dll，UI dll etc. 
+在ET框架的 init.cs中，在执行codeLoader之前，加入yooAssets热更的逻辑
+并将ET中所有使用AB包加载的地方改为yooAssets的API来加载
 
 # 8.部署云服务器
 主要参考[ET7.0 腾讯云centos部署](https://blog.csdn.net/liyuping8888/article/details/126859161)
@@ -93,6 +95,8 @@ TODO 以后来总结
 ![ThirdParty](https://github.com/h87545645/Blog/blob/main/unity3d/img/libkcp.so.png)
 
 而部署在云上的部分，只需要将编译好的libkcp.so直接放到Bin下面即可
+
+# 9.打包流程
 
 
 

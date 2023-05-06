@@ -120,3 +120,12 @@ Hybridclr的傻瓜式一键生成所有
 
 //TODO 补充截图 自动化打包
 
+# 10.ET中monobehavior如何与热更层通信
+
+ET的设计模式要求hotfix中全是静态类，并且不能有任何继承（ECS）
+而很多时候又需要用到monobehavior的功能，如scrollRect和碰撞检测等，在碰撞后需要通知hotfix层执行逻辑
+在mono层通过ET的事件组件发送事件通知hotfix层，scene是root
+事件定义我放在了ThridParty里，放在外面死活不行。
+并且mono层的代码必须放到loader文件夹下，否则打包后Hybridclr生成的桥接函数里将不包含事件导致报错
+
+

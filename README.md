@@ -93,6 +93,9 @@ stay foolish stay hungry
 ## leetcode
 [leetcode 笔记](https://github.com/h87545645/leetcode_note)
 
+## 记录一些想法
+[一些突然想到的创意](https://github.com/h87545645/Blog/blob/main/ideas/ideas.md)
+
 
 学习清单
 astar 寻路算法

@@ -32,4 +32,4 @@ this.node.on(cc.Node.EventType.TOUCH_START, this._touchStart, this,true);
 
 这样也就不怕被子节点吞噬touch了
 
-[完整组件代码]()
+[完整组件代码](https://github.com/h87545645/Blog/blob/main/cocos-creator/DragAttachHelper.ts)

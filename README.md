@@ -76,6 +76,8 @@ stay foolish stay hungry
 
 [cocos creator 设置cullingMask技巧](https://github.com/h87545645/Blog/blob/main/cocos-creator/cocos%E8%AE%BE%E7%BD%AE%E7%9B%B8%E6%9C%BA%E6%B8%B2%E6%9F%93cullingMask%E6%8A%80%E5%B7%A7.md)
 
+[cocos creator 悬浮框组件](https://github.com/h87545645/Blog/blob/main/cocos-creator/cocos%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E7%A9%BF%E9%80%8F.md)
+
 
 ## 部署云服务器
 

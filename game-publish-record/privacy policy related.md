@@ -18,4 +18,4 @@
 
 如果有云服务器的话，可以自己做一个隐私政策网页，不用购买域名也行。
 
-如何制作[隐私政策网页]()
+如何制作[隐私政策网页](https://github.com/h87545645/Blog/blob/main/game-publish-record/privacy%20policy%20website.md)

@@ -14,12 +14,12 @@ app icon (512x512方图)
 
 apk包，注意包名需要和创建应用的名字一样。
 
-## 3。遇到的问题
+## 3.遇到的问题
 提交审核后，taptap的运营人员主动联系了我，
 提出了存在的问题，并且还给出了解决的方案，非常贴心。
 
 主要在游戏没有隐私政策同意流程。
 
-具体参考 [隐私政策解决方案]()
+具体参考 [隐私政策解决方案](https://github.com/h87545645/Blog/blob/main/game-publish-record/privacy%20policy%20related.md)
 
 总的来说上架taptap还是很顺利的。

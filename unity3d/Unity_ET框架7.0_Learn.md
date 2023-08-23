@@ -80,6 +80,10 @@ HybridCLR->generate=>all报错 GenerateStripedAOTDlls 失败
 在ET框架的 init.cs中，在执行codeLoader之前，加入yooAssets热更的逻辑
 并将ET中所有使用AB包加载的地方改为yooAssets的API来加载
 
+游戏开始时，走下载热更逻辑，热更结束后再正常codeLoader加载dll代码。
+
+yooAssets 打包出来的资源直接丢到cdn桶里
+
 # 8.部署云服务器
 
 [部署流程](https://github.com/h87545645/Blog/blob/main/Linux%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/ET7%20%E9%83%A8%E7%BD%B2%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8.md)

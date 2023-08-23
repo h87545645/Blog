@@ -7,4 +7,5 @@
 
 找到[使用 WordPress 应用模板搭建网站](https://cloud.tencent.com/document/product/1207/45117)
 
+按照步骤部署即可，需要注意的是
 

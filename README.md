@@ -85,6 +85,10 @@ stay foolish stay hungry
 
 [ET7 部署云服务器]()
 
+## 上架发布游戏
+
+[上架taptap](https://github.com/h87545645/Blog/blob/main/game-publish-record/TapTap%E4%B8%8A%E6%9E%B6.md)
+
 ## git 技巧&&常见错误
 [git 常用技巧](https://github.com/h87545645/Blog/blob/main/git/git.md)
 

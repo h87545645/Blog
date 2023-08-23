@@ -12,5 +12,4 @@
 包有缺陷，即只要工程里面含有这个包，启动必获取 Android ID，无法屏蔽，建议先移除这个包再重新打包。
 ---
 方案三
-也可不导出到Android Studio，[参考如下方案：]
-(https://blog.csdn.net/final5788/article/details/127229381)
+也可不导出到Android Studio，[参考如下方案：](https://blog.csdn.net/final5788/article/details/127229381)

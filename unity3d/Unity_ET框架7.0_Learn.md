@@ -81,20 +81,8 @@ HybridCLR->generate=>all报错 GenerateStripedAOTDlls 失败
 并将ET中所有使用AB包加载的地方改为yooAssets的API来加载
 
 # 8.部署云服务器
-主要参考[ET7.0 腾讯云centos部署](https://blog.csdn.net/liyuping8888/article/details/126859161)
-对linux还不太熟悉 所以主要记录一下ET在linux上的问题
 
-1） Unable to load shared library ’kcp
-这是因为linxu上没有kcp的库
-然后我去安装了cmake，按教程在linux上编kcp库，又发现32位的死活编不成功
-遂换成64位，终于成功
-可以看到工程里存放库的文件夹
-![plugins](https://github.com/h87545645/Blog/blob/main/unity3d/img/ET_plugins.png)
-
-然后是解决方案DotNet.ThirdParty.csproj里可以看到对应引用
-![ThirdParty](https://github.com/h87545645/Blog/blob/main/unity3d/img/libkcp.so.png)
-
-而部署在云上的部分，只需要将编译好的libkcp.so直接放到Bin下面即可
+[部署流程](https://github.com/h87545645/Blog/blob/main/Linux%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/ET7%20%E9%83%A8%E7%BD%B2%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8.md)
 
 
 

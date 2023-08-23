@@ -11,8 +11,7 @@
 2、检查 Unity Analystics 相关服务，先把 Analysitics 做一个延迟初始化（默认是启动 Unity 即初始化），待隐私同意后再进行初始化。然后查找是否用了 IAP 的包， IAP
 包有缺陷，即只要工程里面含有这个包，启动必获取 Android ID，无法屏蔽，建议先移除这个包再重新打包。
 ---
-## 方案三
-## 也可不导出到Android Studio，[参考这里](https://blog.csdn.net/final5788/article/details/127229381)
+## 方案三 也可不导出到Android Studio，[参考这里](https://blog.csdn.net/final5788/article/details/127229381)
 
 我用的第三个方案，总的来说非常方便
 

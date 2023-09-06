@@ -58,3 +58,5 @@ auto_publish2.txt
 cd ET/Public/Bin     
 nohup nohup dotnet App.dll --Process=1 --Console=0 --LogLevel=4 --StartConfig=StartConfig/Release& echo $! > cmd.pid    启动服务器并将后台pid号记录到cmd.pid中
 ```
+
+## [ET服务器常用到的一些命令]()

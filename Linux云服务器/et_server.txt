@@ -1,0 +1,41 @@
+dotnet App.dll --Process=1 --Console=1 --StartConfig=StartConfig/Localhost
+dotnet App.dll --Process=1 --Console=1 --LogLevel=4 --StartConfig=StartConfig/Release
+正式发布需关闭console 否则磁盘会塞爆
+nohup dotnet App.dll --Process=1 --Console=0 --LogLevel=4 --StartConfig=StartConfig/Release&
+//将pid记录在cmd.pid
+nohup nohup dotnet App.dll --Process=1 --Console=0 --LogLevel=4 --StartConfig=StartConfig/Release& echo $! > cmd.pid
+//杀掉进程
+kill -9 `cat cmd.pid`
+
+nohup.out
+设置大小
+log=`tail -n 1000 nohup.out`;
+只输出错误
+nohup ./program >/dev/null 2>log &
+清空
+echo "$log" > nohup.out
+查询当前程序pid
+ps -ef | grep "dotnet App.dll"
+
+[1] 103803
+
+
+1	127.0.0.1	127.0.0.1	10000
+1	172.17.16.8	110.40.241.12	10000
+
+
+mongodb 自启动
+[Unit]
+Description=Mongodb Service
+After=network.target remote-fs.target nss-lookup.target
+[Service]
+Type=forking
+ExecStart=/usr/local/mongodb/bin/mongod --config /usr/local/mongodb/mongod.conf
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/usr/local/mongodb/bin/mongod --config /usr/local/mongodb/mongod.conf --shutdown
+PrivateTmp=true
+[Install]
+WantedBy=multi-user.target
+
+   <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+    <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="false" />

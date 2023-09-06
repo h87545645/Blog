@@ -10,5 +10,5 @@ TODO
 但是在unity中搜索不到哪里用了，也不知道如何去除。
 
 最后将unity工程导出成Android studio工程后，在AS里全局搜索QUERY_ALL_PACKAGES
-[!img](https://github.com/h87545645/Blog/blob/main/image/as_QUERY_ALL_PACKAGES.png)
+![img](https://github.com/h87545645/Blog/blob/main/image/as_QUERY_ALL_PACKAGES.png)
 将后面的on改成off即可。

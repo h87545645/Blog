@@ -28,3 +28,33 @@ nohup dotnet App.dll —Process=1 —Console=0 —LogLevel=4 —StartConfig=Star
 nohup 是为了让服务器不中断执行，否则退出云服务器登陆后，程序就挂了。
 需要注意正式上线时 —Console=0 一定要为0 ，console 开启时，会一直将log写入 nohup.out ,
 此文件会以 1M/s 的速度增大。
+
+## 一键发布到云服务器
+
+### 1.window bat文件
+
+auto_publish.bat
+```
+putty -ssh root@43.136.240.126:/root/ -pw "Tsp87545647" -m C:\U3D\U3D_proj\ET-EUI-Learn\auto_publish.txt
+pscp.exe -r -pw "Tsp87545647" -P 22 C:\U3D\U3D_proj\ET-EUI-Learn\Bin root@43.136.240.126:/root/ET/Public
+putty -ssh root@43.136.240.126:/root -pw "Tsp87545647" -m C:\U3D\U3D_proj\ET-EUI-Learn\auto_publish2.txt
+
+```
+
+第一行是连接到自己的云服务器，然后执行auto_publish.txt里的指令
+auto_publish.txt
+```
+cd ET/Public/Bin  //cd 到ET服务器目录
+kill -9 `cat cmd.pid`  //先杀掉cmd.pid 中记录的原来正在运行的服务器后台程序
+cd ../    
+rm -rf ./Bin/   //删除原来服务器
+```
+
+第二行是将本地服务器文件传到云服务器对应位置
+
+第三行是执行auto_publish2.txt
+auto_publish2.txt
+```
+cd ET/Public/Bin     
+nohup nohup dotnet App.dll --Process=1 --Console=0 --LogLevel=4 --StartConfig=StartConfig/Release& echo $! > cmd.pid    启动服务器并将后台pid号记录到cmd.pid中
+```

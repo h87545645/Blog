@@ -83,7 +83,7 @@ stay foolish stay hungry
 
 [Linux 云服务踩坑](https://github.com/h87545645/Blog/blob/main/Linux%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/Linux%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B8%A9%E5%9D%91.md)
 
-[ET7 部署云服务器]()
+[ET7 部署云服务器](https://github.com/h87545645/Blog/blob/main/Linux%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/ET7%20%E9%83%A8%E7%BD%B2%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8.md)
 
 ## 上架发布游戏
 

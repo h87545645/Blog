@@ -1,0 +1,4 @@
+cd ET/Public/Bin
+kill -9 `cat cmd.pid`
+cd ../
+rm -rf ./Bin/

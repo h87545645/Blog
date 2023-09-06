@@ -1,0 +1,2 @@
+cd ET/Public/Bin
+nohup nohup dotnet App.dll --Process=1 --Console=0 --LogLevel=4 --StartConfig=StartConfig/Release& echo $! > cmd.pid

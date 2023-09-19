@@ -28,3 +28,6 @@ ALTER USER 'mysqlUsername'@'localhost' IDENTIFIED WITH mysql_native_password BY 
 这一步不设置对，最后wordpress 会报建立数据库连接时出错`，错误信息
 
 部署完成后 在目录下 wp-admin登陆，然后就可以编辑自己的网页了
+
+
+部署完成后 访问 http://43.136.240.126/wordpress/wp-login 登陆

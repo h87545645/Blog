@@ -30,7 +30,7 @@
 			outputSprite.node.scaleY = -Math.abs(outputSprite.node.scaleY);
 		}
 ```
-核心逻辑是 创建RenderTexture 设置camera的targetTexture [mCamera.targetTexture = renderTexture;]
+核心逻辑是 创建RenderTexture 设置camera的targetTexture *mCamera.targetTexture = renderTexture;*
 
 渲染后用renderTexture创建spriteframe 用来显示
 

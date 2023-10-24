@@ -68,6 +68,8 @@ stay foolish stay hungry
 
 [creator 扩展编辑器](https://github.com/h87545645/Blog/blob/main/cocos-creator/cocos-creator%E6%89%A9%E5%B1%95%E7%BC%96%E8%BE%91%E5%99%A8.md)
 
+[creator 利用camera 截图](https://github.com/h87545645/Blog/blob/main/cocos-creator/cococ-creator%20%E5%88%A9%E7%94%A8camera%E6%88%AA%E5%9B%BE.md)
+
 [模拟纸飞机动画 PaperPlaneAnim](https://github.com/h87545645/PaperPlaneAnim)
 
 [UIScrollPullView 下拉加载更多](https://github.com/h87545645/UIScrollPullView)

@@ -34,5 +34,5 @@
 
 渲染后用renderTexture创建spriteframe 用来显示
 
-[完整代码]()
+[完整代码](https://github.com/h87545645/Blog/blob/main/cocos-creator/SnapShot.ts)
 

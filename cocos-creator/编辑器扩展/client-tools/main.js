@@ -1,24 +1,21 @@
 'use strict'
 const path = require("path");
-const utils = require('./tool/utils')
+const common = require('./tool/common')
+const utils = require('./tool/utils/common-utils')
 const nodeExporter = require('./tool/core/node-exporter')
 const assetChecker = require('./tool/core/assets-checker')
-const convertConfig = require('./tool/core/skin-change/convertConfig')
+const slotsAdapter = require('./tool/core/slots-adapt')
+const PACKAGE_JSON = require('./package.json')
 const audioCfgExporter = require('./tool/core/audio-cfg-exporter')
-
-const AUDIOPATH = path.join(Editor.Project.path, "assets/game-bundle/package");
+const AUDIOPATH = path.join(Editor.Project.path, "assets/bundle/package");
 
 module.exports = {
   load() {
-    // execute when package loaded
     nodeExporter.init()
     audioCfgExporter.init()
   },
 
-  unload() {
-    // execute when package unloaded
-  },
-
+  unload() { },
   messages: {
     'export': function () {
       doExport()
@@ -26,17 +23,30 @@ module.exports = {
     'check': function () {
       doCheck()
     },
-    'exportCfg': function () {
-      doExportChangeCfg()
+    'adapt': function () {
+      doAdapt()
     },
     'exportAudioCfg': function () {
       doExportAudioCfg()
     }
-    
   }
 }
 
-function doExport () {
+function doAdapt() {
+  let openPaths = Editor.Dialog.openFile({
+    defaultPath: common.AssetFullPath,
+    nameFieldLabel: '路径选择:',
+    properties: [
+      'openDirectory'
+    ],
+    message: '请选择需要刷新的项目所在的文件夹',
+    buttonLabel: 'OK'
+  })
+
+  slotsAdapter.deal(openPaths[0])
+}
+
+function doExport() {
   let currentSelection = Editor.Selection.curSelection('asset')
   console.log(currentSelection.length)
 
@@ -79,7 +89,7 @@ function doExport () {
   }
 }
 
-function doCheck () {
+function doCheck() {
   let currentSelection = Editor.Selection.curSelection('asset')
   // console.log(currentSelection.length)
 
@@ -98,60 +108,50 @@ function doCheck () {
   }
 }
 
-function doExportChangeCfg () {
-  let openPaths = Editor.Dialog.openFile({
-    defaultPath: BUNDLES_ROOT,
-    nameFieldLabel: '路径选择:',
-    properties: [
-      'openDirectory'
-    ],
-    message: '查询没有引用的资源',
-    buttonLabel: 'OK'
-  })
-
-  for (let i = 0; i < openPaths.length; ++i) {
-    if (openPaths[i] != null) {
-      convertConfig.deal(openPaths[i])
+function doExportAudioCfg() {
+  try {
+    Editor.info(` --------------- doExportAudioCfg --------------- `);
+    let checkPaths = Editor.Dialog.openFile({
+      defaultPath: AUDIOPATH,
+      nameFieldLabel: '路径选择:',
+      properties: [
+        'openDirectory'
+      ],
+      message: '导出audio配置',
+      buttonLabel: 'OK'
+    })
+    if (checkPaths.length == 0) {
+      Editor.log("searchPath is not directory");
+      return;
     }
-  }
-}
-
-
-function doExportAudioCfg () {
-  Editor.info(` --------------- doExportAudioCfg --------------- `);
-  let checkPaths = Editor.Dialog.openFile({
-    defaultPath: AUDIOPATH,
-    nameFieldLabel: '路径选择:',
-    properties: [
-      'openDirectory'
-    ],
-    message: '导出audio配置',
-    buttonLabel: 'OK'
-  })
-  if (checkPaths.length == 0) {
-    Editor.log("searchPath is not directory");
-    return;
-  }
-  let newUrl = Editor.Dialog.saveFile({
-    filters: [
-      {
-        name: 'json',
-        extensions: ['json']
+    let splits = checkPaths[0].split("/");
+    let bundleName = splits[splits.length - 3];
+    let defaultUrl = checkPaths[0] + "/" + bundleName + "-audio-cfg"
+    Editor.info(` --------------- doExportAudioCfg defaultUrl : ${defaultUrl}--------------- `);
+    let newUrl = Editor.Dialog.saveFile({
+      filters: [
+        {
+          name: 'json',
+          extensions: ['json']
+        }
+      ],
+      defaultPath: defaultUrl,
+      nameFieldLabel: '文件名:',
+      properties: [
+        'openDirectory',
+        'createDirectory'
+      ],
+      message: '导出json配置',
+      buttonLabel: '导出'
+    })
+    Editor.info(` --------------- doExportAudioCfg newUrl : ${newUrl} --------------- `);
+    for (let i = 0; i < checkPaths.length; ++i) {
+      if (checkPaths[i] != null) {
+        audioCfgExporter.dealAsset(checkPaths[i], newUrl)
       }
-    ],
-    defaultPath: checkPaths[0],
-    nameFieldLabel: '文件名:',
-    properties: [
-      'openDirectory',
-      'createDirectory'
-    ],
-    message: '导出json配置',
-    buttonLabel: '导出'
-  })
-  Editor.info(` --------------- doExportAudioCfg newUrl : ${newUrl} --------------- `);
-  for (let i = 0; i < checkPaths.length; ++i) {
-    if (checkPaths[i] != null) {
-      audioCfgExporter.dealAsset(checkPaths[i],newUrl)
     }
+  } catch (error) {
+    Editor.error(error);
   }
+
 }

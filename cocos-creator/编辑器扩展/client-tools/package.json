@@ -14,9 +14,13 @@
             "message": "client-tools:check",
             "accelerator": "alt+1"
         },
+        "i18n:MAIN_MENU.package.title/刷新老虎机关卡": {
+            "message": "client-tools:adapt",
+            "accelerator": "alt+2"
+        },
         "i18n:MAIN_MENU.package.title/导出音频配置文件": {
             "message": "client-tools:exportAudioCfg",
-            "accelerator": "alt+2"
+            "accelerator": "alt+3"
         }
     },
     "dependencies": {

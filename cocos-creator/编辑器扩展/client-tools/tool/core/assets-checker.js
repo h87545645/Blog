@@ -1,73 +1,9 @@
 const fs = require('fire-fs')
 const path = require('fire-path')
 const util = require('util')
-const utils = require('../utils')
 
-let $assetPath = ''
 let $assetData = null
 let uuidMap = {}
-
-function _loopAssetInfo ($assetData, componentInfo, filePath) {
-  if (componentInfo != null) {
-    switch (componentInfo['__type__']) {
-      case 'cc.Sprite':
-      case 'cc.Mask':
-        printAssetInfo(componentInfo['_spriteFrame'], filePath)
-        printAssetInfo(componentInfo['_atlas'], filePath)
-        break
-      case 'cc.Button':
-        printAssetInfo(componentInfo['_N$normalSprite'], filePath)
-        printAssetInfo(componentInfo['_N$pressedSprite'], filePath)
-        printAssetInfo(componentInfo['pressedSprite'], filePath)
-        printAssetInfo(componentInfo['_N$hoverSprite'], filePath)
-        printAssetInfo(componentInfo['hoverSprite'], filePath)
-        printAssetInfo(componentInfo['_N$disabledSprite'], filePath)
-        break
-      case 'sp.Skeleton':
-        printAssetInfo(componentInfo['_N$skeletonData'], filePath)
-        break
-      case 'cc.Label':
-        printAssetInfo(componentInfo['_N$file'], filePath)
-        break
-      case 'cc.ParticleSystem':
-        printAssetInfo(componentInfo['_file'], filePath)
-        printAssetInfo(componentInfo['_spriteFrame'], filePath)
-        break
-      case 'cc.Animation':
-        let clips = componentInfo['_clips']
-        for (let i = 0; i < clips.length; ++i) {
-          printAssetInfo(clips[i], filePath)
-        }
-        break
-      default:
-        if (componentInfo['__type__'].indexOf(`cc.`) < 0) { // 查询脚本引用，可能存在bug
-          for (let key in componentInfo) {
-            if (componentInfo[key] != null) {
-              let infoValues = componentInfo[key]
-              switch (typeof infoValues) {
-                case 'object':
-                  if (Array.isArray(infoValues)) {
-                    for (let i = 0; i < infoValues.length; ++i) {
-                      if (infoValues[i]['__id__'] != null) {
-                        _loopAssetInfo($assetData, $assetData[infoValues[i]['__id__']], filePath)
-                      } else if (infoValues[i]['__uuid__'] != null) {
-                        printAssetInfo(infoValues[i], filePath)
-                      }
-                    }
-                  } else {
-                    if (componentInfo[key][`__uuid__`] != null) {
-                      printAssetInfo(componentInfo[key], filePath)
-                    }
-                  }
-                  break
-              }
-            }
-          }
-        }
-        break
-    }
-  }
-}
 
 /**
  * 查找当前节点的修饰节点
@@ -80,7 +16,32 @@ function checkNode (nodeInfo, path) {
   if (nodeInfo['_components'] && nodeInfo['_components'].length > 0) {
     for (let i = 0; i < nodeInfo['_components'].length; ++i) {
       let typeId = nodeInfo['_components'][i]['__id__']
-      _loopAssetInfo($assetData, $assetData[typeId], path)
+      let componentInfo = $assetData[typeId]
+      if (componentInfo != null) {
+        let type = componentInfo['__type__']
+        if (type == 'cc.Sprite') {
+          printAssetInfo(componentInfo['_spriteFrame'], curPath)
+        } else if (type == 'cc.Button') {
+          printAssetInfo(componentInfo['_N$normalSprite'], curPath)
+          printAssetInfo(componentInfo['_N$pressedSprite'], curPath)
+          printAssetInfo(componentInfo['pressedSprite'], curPath)
+          printAssetInfo(componentInfo['_N$hoverSprite'], curPath)
+          printAssetInfo(componentInfo['hoverSprite'], curPath)
+          printAssetInfo(componentInfo['_N$disabledSprite'], curPath)
+        } else if (type == 'sp.Skeleton') {
+          printAssetInfo(componentInfo['_N$skeletonData'], curPath)
+        } else if (type == 'cc.Label') {
+          printAssetInfo(componentInfo['_N$file'], curPath)
+        } else if (type == 'cc.ParticleSystem') {
+          printAssetInfo(componentInfo['_file'], curPath)
+          printAssetInfo(componentInfo['_spriteFrame'], curPath)
+        } else if (type == 'cc.Animation') {
+          let clips = componentInfo['_clips']
+          for (let i = 0; i < clips.length; ++i) {
+            printAssetInfo(clips[i], curPath)
+          }
+        }
+      }
     }
   }
 
@@ -118,6 +79,7 @@ function printAssetInfo (ids, path) {
       index = index >= 0 ? index : assetInfo.url.indexOf(`res/anim`)
       key = assetInfo.url.substr(0, index - 1)
     }
+
     if (!uuidMap[`${key}`]) uuidMap[`${key}`] = []
     uuidMap[`${key}`].push(`[${assetInfo.url}, ${uuids[j]}] => ${path}`)
   }
@@ -136,21 +98,15 @@ module.exports = {
   },
 
   dealAsset(assetInfo) {
-    $assetPath = utils.assetsPath(assetInfo.path)
     $assetData = fs.readJsonSync(assetInfo.path)
     uuidMap = {}
 
     checkNode($assetData[1], '')
-
+    
     for (let key in uuidMap) {
+      Editor.log(`${key}:`)
       for (let i = 0; i < uuidMap[key].length; ++i) {
-        if ($assetPath.indexOf(key) < 0 && key != 'db://assets/resources' && key != "") {
-          Editor.error(`${key}:`)
-          Editor.error(`${uuidMap[key][i]}`)
-        } else {
-          // Editor.log(`${key}:`)
-          // Editor.log(`${uuidMap[key][i]}`)
-        }
+        Editor.log(`${uuidMap[key][i]}`)
       }
     }
   }

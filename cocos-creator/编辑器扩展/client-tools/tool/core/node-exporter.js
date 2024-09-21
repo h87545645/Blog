@@ -5,7 +5,7 @@ const path = require('fire-path')
 const util = require('util')
 
 const common = require('../common')
-const utils = require('../utils')
+const utils = require('../utils/common-utils')
 
 let nameList = {}
 let sameNameList = []

@@ -14,59 +14,54 @@ const right_type = new Array("avi", "wmv", "mpg", "mpeg", "mov", "rm", "ram", "s
  * @param { 前缀 } prefixName 
  * @returns  
  */
-function searchFile(searchPath, isDeepSearch) {
-  let nameList = [];
+function searchFile(searchPath, isDeepSearch , jsonObj) {
 
   if (!searchPath || !fs.existsSync(searchPath)) {
     Editor.log("[Utils - searchFile]: searchPath is not exist");
-    return nameList;
+    return;
   }
   Editor.info(` --------------- audio-cfg-exporter searchFile statParent --------------- `);
   let statParent = fs.statSync(searchPath)
   if (!statParent.isDirectory()) {
     Editor.log("searchPath is not directory");
-    return nameList;
+    return;
   }
   Editor.info(` --------------- audio-cfg-exporter searchFile start --------------- `);
-  _walkDirForSeachFile(searchPath, isDeepSearch, nameList);
-
-  return nameList;
+  _walkDirForSeachFile(searchPath, isDeepSearch, jsonObj, searchPath);
 }
 
 /**
  * 遍历搜索文件
  * @param { 搜索路径 } searchPath  
  * @param { 是否深度搜索 } isDeepSearch 
- * @param { 搜索到的文件名数组 } nameList 
- * @param { 后缀 } extName 
- * @param { 前缀 } prefixName 
+ * @param { 搜索到的文件名对象 } nameList 
  */
-function _walkDirForSeachFile(searchPath, isDeepSearch, nameList) {
+function _walkDirForSeachFile(searchPath, isDeepSearch, jsonObj , rootPath) {
   let files = fs.readdirSync(searchPath);
   for (let i = 0; i < files.length; i++) {
     let file = files[i];
     const filePath = path.join(searchPath, file);
     const fileStat = fs.statSync(filePath);
-
     if (fileStat.isDirectory()) {
-      if (exceptPath == filePath) {
-        continue;
-      }
-      _walkDirForSeachFile(filePath, isDeepSearch, nameList, extName, prefixName, exceptPath);
+      // Editor.info(` --------------- audio-cfg-exporter DFS SEARCH : ${filePath} --------------- `);
+      _walkDirForSeachFile(filePath, isDeepSearch, jsonObj , rootPath);
     } else {
-      // const isMatchExtName = file.endsWith(extName);
-      // const isMatchPrefix = file.startsWith(prefixName);
+
       let index = file.lastIndexOf(".");
       if (index < 0) {
         continue;
       }
-      let suffix = file.substring(index + 1, file.length);
+     
+      let suffix = path.extname(filePath).slice(1); // 去除点号并返回后缀名部分
       // Editor.info(` --------------- audio-cfg-exporter file suffix : ${suffix} , index : ${right_type.indexOf(suffix)}--------------- `);
 
       if (right_type.indexOf(suffix) >= 0) {
-        let name = file.substring(0, index);
+        let name = path.basename(filePath, path.extname(filePath));
         Editor.info(` --------------- audio-cfg-exporter audio name : ${name} --------------- `);
-        nameList.push(name);
+        let filePathWithoutSuffix = path.join(searchPath, name);
+        filePathWithoutSuffix = path.relative(rootPath, filePathWithoutSuffix);
+        Editor.info(` --------------- audio-cfg-exporter filePathWithoutSuffix: ${filePathWithoutSuffix} --------------- `);
+        jsonObj[name] = filePathWithoutSuffix;
       }
     }
   }
@@ -112,14 +107,12 @@ module.exports = {
     }
     Editor.info(` --------------- doExportAudioCfg serch file path : ${filePath} --------------- `);
     //遍历所有文件名，写入json
-    let nameList = searchFile(filePath, true);
-    if (nameList.length == 0) {
+    searchFile(filePath, true , json_obj);
+    if (JSON.stringify(json_obj) === '{}') {
       Editor.log(`audioExport: no files found`);
       return;
     }
-    for (let i = 0; i < nameList.length; i++) {
-      json_obj[nameList[i]] = nameList[i];
-    }
+
     Editor.info(` --------------- doExportAudioCfg json_obj ${json_obj} --------------- `);
     // 获取导出的文件名，作为类名写入导出的脚本
     let className = path.basenameNoExt(newUrl)

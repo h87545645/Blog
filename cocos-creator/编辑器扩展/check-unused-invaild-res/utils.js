@@ -25,8 +25,6 @@ function matchUUID(resName, uuid, foundJsonMap) {
         Editor.error(`${key} is invalid resName is ${resName}`);
       }
     }
-
- 
 }
 
 /**

@@ -4,6 +4,46 @@
 
 ## 检查bundle包内非法资源
 
+===================================================================================================
+
+2024/9/21 更新
+
+以前的思路是拿到所有资源json, 再和工程内其他bundle里的资源meta文中的uuid做匹配
+
+matchUUID函数
+```
+/**
+ * 匹配 uuid
+ * @param { 资源名 } resName 
+ * @param { UUID } uuid 
+ * @param { 搜索 uuid 的 jsonMap } foundJsonMap 
+ * @returns 
+ */
+function matchUUID(resName, uuid, foundJsonMap) {
+    if (foundJsonMap.size === 0) {
+      Editor.log('_matchUUID - foundJsonMap size is 0')
+      return;
+    }
+
+    for (let [key, value] of foundJsonMap) {
+      let jsonStr = JSON.stringify(value);
+      if (jsonStr.indexOf(uuid) !== -1) {
+        Editor.error(`${key} is invalid resName is ${resName}`);
+      }
+    }
+}
+```
+只要能匹配到，就认定为非法资源引用。
+
+今天发现creator 里自带的 Editor.assetdb.assetInfoByUuid(uuid) 方法 
+
+可以直接提供uuid 找到其对应的资源路径
+
+
+
+===================================================================================================
+
+2024/9/21 更新
 
 由于bundle中的资源需要下载，如果引用了其他bundle里的资源，但是那个bundle又还未下载的话，就会出现资源缺失
 
@@ -33,53 +73,6 @@ package.json是编辑器菜单的入口配置
 
 main 指定了工具入口
 
-主要逻辑
-
-```js
- _startCheckBundleRes(bundlePath) {
-    if (!fs.existsSync(bundlePath)) {
-      Editor.log(`_startCheckBundleRes: ${bundlePath} is not exist`);
-      return;
-    }
-
-    let fileStat = fs.statSync(bundlePath);
-    if (!fileStat.isDirectory()) {
-      Editor.log(`_startCheckBundleRes: ${bundlePath} is not directory`);
-      return;
-    }
-
-    Editor.info(` --------------- CurCheckBundle : ${bundlePath} --------------- `);
-
-    let foundJsonMap = this._getFoundFileJsonMap(bundlePath);
-
-    if (foundJsonMap.size > 0) {
-      // Editor.info(` --------------- foundJsonMap size : ${foundJsonMap.size} --------------- `);
-      // let lastIndex = bundlePath.lastIndexOf("/");
-      // let parentPath = bundlePath.splice(lastIndex,parentPath.length - lastIndex);
-      this._checkInvildFile(BUNDLES_ROOT, foundJsonMap , bundlePath);
-    } else {
-      Editor.log("foundJsonMap length is 0");
-    }
-
-    Editor.info(` --------------- BundleCheckEnd : ${bundlePath} --------------- `);
-  },
-  
-    _checkInvildFile(curBundlePath, checkedJsonMap , exceptPath) {
-    if (!curBundlePath) {
-      Editor.log('[main _checkInvildFile]: curBundlePath is null');
-    }
-
-    let checkers = new Array();
-    checkers.push(new PicFileChecker());
-    checkers.push(new SpineFileChecker());
-    checkers.push(new AnimFileChecker());
-
-    for (let checker of checkers) {
-      Editor.info(` --------------- _checkInvildFile --------------- `);
-      checker.startCheck(curBundlePath, checkedJsonMap,exceptPath);
-    }
-  },
-```
 
 [检查非法资源](https://github.com/h87545645/Blog/tree/main/cocos-creator/%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95/check-unused-invaild-res)
 

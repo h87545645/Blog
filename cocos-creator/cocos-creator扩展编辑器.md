@@ -41,7 +41,7 @@ main 指定了工具入口
 
 2024/9/21 更新
 
-以前的思路是拿到所有资源json, 再和工程内其他bundle里的资源meta文中的uuid做匹配
+以前的思路是拿到要检查bundle下所有资源json, 再和工程内其他bundle里的资源meta文中的uuid做匹配
 
 matchUUID函数
 ```
@@ -135,6 +135,8 @@ for (let [key, value] of uuidMap) {
 则认为是非法资源
 
 这样匹配不用和其他bundle进行比较，节约大量时间
+
+
 
 [检查非法资源](https://github.com/h87545645/Blog/tree/main/cocos-creator/%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95/check-unused-invaild-res)
 

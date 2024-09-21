@@ -136,7 +136,7 @@ for (let [key, value] of uuidMap) {
 
 这样匹配不用和其他bundle进行比较，节约大量时间
 
-
+直接将 check-unused-invaild-res 文件夹放到 工程目录 packages 下即可
 
 [检查非法资源](https://github.com/h87545645/Blog/tree/main/cocos-creator/%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95/check-unused-invaild-res)
 

@@ -83,7 +83,7 @@ main 指定了工具入口
 
 [检查非法资源](https://github.com/h87545645/Blog/tree/main/cocos-creator/%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95/check-unused-invaild-res)
 
-## 检查bundle包内非法资源
+## 生成资源配置
 
 流程和上面一样，主要逻辑是资源文件夹，匹配规定的资源格式，根据文件名字生成资源配置json，并输出到指定目录成json文件
 
